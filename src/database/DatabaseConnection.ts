@@ -1,4 +1,12 @@
 import { DataSource, ObjectLiteral, EntityTarget, Repository } from 'typeorm';
+import Cliente from '../models/entities/Cliente';
+import Compras from '../models/entities/Compras';
+import DetalleCompra from '../models/entities/DetalleCompra';
+import DetalleVentas from '../models/entities/DetalleVentas';
+import Empleado from '../models/entities/Empleado';
+import Inventario from '../models/entities/Inventario';
+import Producto from '../models/entities/Producto';
+import Venta from '../models/entities/Venta';
 
 export default class DatabaseConnection {
     private dataSource: DataSource;
@@ -14,7 +22,7 @@ export default class DatabaseConnection {
             password: 'root',
             database: 'LugoDB',
             synchronize: true,
-            entities: [],
+            entities: [Cliente, Compras, DetalleCompra, DetalleVentas, Empleado, Inventario, Producto, Venta],
         });
     }
 
