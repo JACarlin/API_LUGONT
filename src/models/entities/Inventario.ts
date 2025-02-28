@@ -62,6 +62,15 @@ export default class Inventario {
         }
     }
 
+    public static async obtenerInventarioPorId(idInventario: number): Promise<Inventario | null> {
+        const repositorio = await Inventario.obtenerRepositorioInventario();
+        try {
+            return await repositorio.findOne({ where: { idInventario } });
+        } catch (error) {
+            throw new Error('Error al obtener el inventario');
+        }
+    }
+
     private static async obtenerRepositorioInventario() {
         const databaseConnection = await DatabaseConnection.getConnectedInstance();
         return databaseConnection.getRepository(Inventario);

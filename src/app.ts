@@ -2,6 +2,8 @@ import bodyParser from 'body-parser';
 import express, { Application } from 'express';
 import cors, { CorsOptions } from 'cors';
 import http from 'http';
+import ClienteController from './controllers/ClienteController';
+import ComprasController from './controllers/CompraController';
 
 const app: Application = express();
 
@@ -19,12 +21,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const server = http.createServer(app);
-/*const io = require("socket.io")(server, {
-    cors: corsOptions
-});*/
 
 app.use(async (req, res, next) => {
     next();
 });
+ClienteController.mount(app);
+ComprasController.mount(app);
 
 export default server;
